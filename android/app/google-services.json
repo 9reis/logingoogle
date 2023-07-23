@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "272768271706",
+    "project_id": "login1-f1a6f",
+    "storage_bucket": "login1-f1a6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272768271706:android:f41a4b52f9b9d6eae21f63",
+        "android_client_info": {
+          "package_name": "br.com.novereistechnology.logingoogle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272768271706-5iu34pveld37e535ohjqfag0l8d3k4qv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.novereistechnology.logingoogle",
+            "certificate_hash": "f31badae13f358e4117dcd69db8e5810e241be13"
+          }
+        },
+        {
+          "client_id": "272768271706-438gdfq5rvhb0d4c3kd3rpvrvqkbnhg9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBepyXNlSlfU7ekrFCosUMaHrO4uyDj6WI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272768271706-438gdfq5rvhb0d4c3kd3rpvrvqkbnhg9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
