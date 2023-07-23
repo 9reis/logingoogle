@@ -4,8 +4,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logingoogle/pages/home_page.dart';
+import 'package:logingoogle/resources/auth_methods.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -23,6 +28,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/home': (context) => HomePage(),
+      },
     );
   }
 }
@@ -38,10 +46,11 @@ class MyHomePage extends StatefulWidget {
 
 // 272768271706-ke2cv04qbvjag2h6casi06dre9fsph17.apps.googleusercontent.com
 class _MyHomePageState extends State<MyHomePage> {
-  void signInWithGoogle() async {
-    try {
-      print('Login with Google');
+//  final AuthMethods _authMethods = AuthMethods();
 
+  Future<bool> signInWithGoogle(BuildContext context) async {
+    bool res = false;
+    try {
       FirebaseAuth auth = FirebaseAuth.instance;
       User? user;
 
@@ -63,14 +72,16 @@ class _MyHomePageState extends State<MyHomePage> {
           user = userCredential.user;
         } on FirebaseAuthException catch (e) {
           print(e);
+          res = false;
         } catch (e) {
           print(e);
         }
       }
-      print('Call google login');
+      res = true;
     } on FirebaseAuthException catch (e) {
       print(e);
     } catch (e) {}
+    return res;
   }
 
   @override
@@ -79,17 +90,26 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.grey[400],
       body: Center(
         child: ElevatedButton(
-          child: Text(
-            'Login with Google',
-            style: TextStyle(color: Colors.white),
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.black,
-          ),
-          onPressed: () {
-            signInWithGoogle();
-          },
-        ),
+            child: Text(
+              'Login with Google',
+              style: TextStyle(color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black,
+            ),
+            onPressed: () async {
+              bool res = await signInWithGoogle(context);
+              if (res) {
+                Navigator.pushNamed(context, '/home');
+              }
+            }
+            // onPressed: () async {
+            //   bool res = await _authMethods.signInWithGoogle(context);
+            //   if (res) {
+            //     Navigator.pushNamed(context, '/home');
+            //   }
+            // },
+            ),
       ),
     );
   }
